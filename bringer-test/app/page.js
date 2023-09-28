@@ -2,10 +2,12 @@
 
 import { Navbar } from "./components/navbar";
 
-export default function Home() {
+const Home = () => {
   return (
     <main>
       <Navbar />
     </main>
   );
-}
+};
+
+export default Home;
