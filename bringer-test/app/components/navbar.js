@@ -1,22 +1,60 @@
-import { Button, Col, Row } from "antd";
+"use client";
+import { Button, Col, Row, Menu } from "antd";
+import {
+  LoginOutlined,
+  HomeOutlined,
+  EnvironmentOutlined,
+} from "@ant-design/icons";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export const Navbar = () => {
+  const [current, setCurrent] = useState("mail");
   const router = useRouter();
-  const handleLoginClick = () => {
-    router.push("/login");
+
+  const onClick = (e) => {
+    setCurrent(e.key);
+    switch (e.key) {
+      case "home":
+        router.push("/");
+        break;
+      case "login":
+        router.push("/login");
+        break;
+      case "tracking":
+        router.push("/tracking_view");
+        break;
+      default:
+        break;
+    }
   };
 
+  const items = [
+    {
+      label: "Home",
+      key: "home",
+      icon: <HomeOutlined />,
+    },
+    {
+      label: "Login",
+      key: "login",
+      icon: <LoginOutlined />,
+    },
+    {
+      label: "Tracking",
+      key: "tracking",
+      icon: <EnvironmentOutlined />,
+    },
+  ];
+
   return (
-    <Row align="top" justify="center">
-      <Col>
-        <Button
-          onClick={handleLoginClick}
-          style={{ marginTop: "1rem", width: "12rem" }}
-        >
-          Login
-        </Button>
-      </Col>
-    </Row>
+    <div>
+      <Menu
+        onClick={onClick}
+        selectedKeys={[current]}
+        mode="horizontal"
+        items={items}
+      />
+    </div>
   );
 };
