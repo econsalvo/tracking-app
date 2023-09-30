@@ -2,8 +2,8 @@
 import { Menu } from "antd";
 import {
   LoginOutlined,
-  HomeOutlined,
-  EnvironmentOutlined,
+  HomeFilled,
+  EnvironmentFilled,
 } from "@ant-design/icons";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -33,7 +33,7 @@ export const Navbar = () => {
     {
       label: "Home",
       key: "home",
-      icon: <HomeOutlined />,
+      icon: <HomeFilled />,
     },
     {
       label: "Login",
@@ -43,7 +43,7 @@ export const Navbar = () => {
     {
       label: "Tracking",
       key: "tracking",
-      icon: <EnvironmentOutlined />,
+      icon: <EnvironmentFilled />,
     },
   ];
 
