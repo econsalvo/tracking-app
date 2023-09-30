@@ -11,7 +11,8 @@ export async function POST(request) {
 
   const token = sign({ username, password }, secret, { expiresIn: EXPIRE });
 
-  const seralized = serialize("cookie", token, {
+  // Set the JWT token as an HTTP cookie
+  const serializedCookie = serialize("cookie", token, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: "strict",
@@ -21,10 +22,11 @@ export async function POST(request) {
 
   const response = {
     message: "success",
+    token: token,
   };
 
   return new Response(JSON.stringify(response), {
     status: 200,
-    headers: { "Set-Cookie": seralized },
+    headers: { "Set-Cookie": serializedCookie },
   });
 }

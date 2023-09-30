@@ -1,38 +1,62 @@
 "use client";
 import axios from "axios";
 import styles from "./login.module.css";
+import { CopyOutlined } from "@ant-design/icons";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { Input, Form, Button } from "antd";
+import { Input, Form, Button, Collapse } from "antd";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isLogin, setIsLogin] = useState(false);
-
-  const router = useRouter();
+  const [token, setToken] = useState("");
 
   const handleSubmit = async (values) => {
-    const payload = {
-      username: values.username,
-      password: values.password,
-    };
-    console.log("login success");
+    console.log(values);
+    setIsLogin(true);
     try {
-      const response = await axios.post("/api/generate_token", payload);
-      console.log(response);
+      const response = await axios.post("/api/generate_token", values);
+      console.log(response.data);
       setIsLogin(true);
+      const jwtToken = response.data.token;
+      setToken(jwtToken);
     } catch (error) {
       console.log(error);
     }
   };
 
+  const copyToClipboard = () => {
+    const textToCopy = token;
+    const textArea = document.createElement("textarea");
+    textArea.value = textToCopy;
+    document.body.appendChild(textArea);
+    textArea.select();
+    document.execCommand("copy");
+    document.body.removeChild(textArea);
+  };
+
+  const items = [
+    {
+      key: "1",
+      label: "Show JWT Token",
+      children: (
+        <div style={{ maxHeight: "300px", overflowY: "auto" }}>
+          <p>{token}</p>
+          <Button style={{ margin: "1rem" }} onClick={copyToClipboard}>
+            Copy
+            <CopyOutlined />
+          </Button>
+        </div>
+      ),
+    },
+  ];
   return (
     <div>
       {!isLogin ? (
         <div className={styles.container}>
           <Form onFinish={handleSubmit} className={styles.form}>
             <Form.Item
+              name="username"
               label={
                 <span style={{ fontSize: "18px", fontWeight: "500" }}>
                   Username
@@ -54,6 +78,7 @@ const Login = () => {
             </Form.Item>
 
             <Form.Item
+              name="password"
               label={
                 <span style={{ fontSize: "18px", fontWeight: "500" }}>
                   Password
@@ -85,7 +110,16 @@ const Login = () => {
           </Form>
         </div>
       ) : (
-        <div> other</div>
+        <div className={styles.tknContainer}>
+          <Collapse
+            style={{
+              width: "100%",
+              background: "white",
+              maxWidth: "30rem",
+            }}
+            items={items}
+          />
+        </div>
       )}
     </div>
   );
