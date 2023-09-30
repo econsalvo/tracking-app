@@ -1,0 +1,23 @@
+.containerStyle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+    width: 100vw;
+    gap: 2rem;
+}
+
+.card {
+    border: 3px solid transparent;
+    transition: border-color 0.3s;
+    height: 15rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 20rem;
+}
+
+.card:hover {
+    border-color: rgb(69, 19, 248);
+}

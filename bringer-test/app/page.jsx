@@ -1,25 +1,23 @@
 "use client";
 import { Card } from "antd";
 import Link from "next/link";
+import styles from "./home.module.css";
 
 const Home = () => {
-  const containerStyle = {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    height: "90vh",
-  };
-
   return (
-    <main style={containerStyle}>
+    <main className={styles.containerStyle}>
       <Link href="/login">
-        <Card>
-          <h1>1</h1>
+        <Card className={styles.card}>
+          <div>
+            <h1>Login View</h1>
+          </div>
         </Card>
       </Link>
       <Link href="/tracking_view">
-        <Card>
-          <h1>2</h1>
+        <Card className={styles.card}>
+          <div>
+            <h1>Tracking View</h1>
+          </div>
         </Card>
       </Link>
     </main>
