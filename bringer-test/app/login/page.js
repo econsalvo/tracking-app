@@ -1,8 +1,9 @@
 "use client";
 import axios from "axios";
+import styles from "./login.module.css";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Input, Row, Col, Form, Button } from "antd";
+import { Input, Form, Button } from "antd";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -10,12 +11,10 @@ const Login = () => {
 
   const router = useRouter();
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
+  const handleSubmit = async (values) => {
     const payload = {
-      username: event.currentTarget.username.value,
-      password: event.currentTarget.password.value,
+      username: values.username,
+      password: values.password,
     };
     console.log("login");
     try {
@@ -28,35 +27,39 @@ const Login = () => {
   };
 
   return (
-    <Row justify="center" align="middle" style={{ minHeight: "100vh" }}>
-      <Col span={8} style={{ border: "1px solid white", padding: "20px" }}>
-        <form onSubmit={handleSubmit}>
-          <Form.Item label={<span style={{ color: "white" }}>Username</span>}>
-            <Input
-              type="text"
-              name="username"
-              required
-              value={username}
-              onChange={(event) => setUsername(event.target.value)}
-            />
-          </Form.Item>
-          <Form.Item label={<span style={{ color: "white" }}>Password</span>}>
-            <Input
-              type="password"
-              name="password"
-              required
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-            />
-          </Form.Item>
-          <Form.Item style={{ textAlign: "center" }}>
-            <Button type="primary" htmlType="submit" style={{ width: "100%" }}>
-              Submit
-            </Button>
-          </Form.Item>
-        </form>
-      </Col>
-    </Row>
+    <div className={styles.container}>
+      <Form onFinish={handleSubmit} className={styles.form}>
+        <Form.Item label="Username">
+          <Input
+            type="text"
+            name="username"
+            required
+            value={username}
+            onChange={(event) => setUsername(event.target.value)}
+            rules={[{ required: true, message: "Please input your username!" }]}
+            placeholder="Username"
+          />
+        </Form.Item>
+
+        <Form.Item label="Password">
+          <Input
+            type="password"
+            name="password"
+            placeholder="Password"
+            required
+            value={password}
+            style={{ fontSize: "20px" }}
+            onChange={(event) => setPassword(event.target.value)}
+            rules={[{ required: true, message: "Please input your password!" }]}
+          />
+        </Form.Item>
+        <Form.Item style={{ textAlign: "center" }}>
+          <Button type="primary" htmlType="submit" style={{ width: "100%" }}>
+            Submit
+          </Button>
+        </Form.Item>
+      </Form>
+    </div>
   );
 };
 
