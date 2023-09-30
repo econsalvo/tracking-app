@@ -7,6 +7,12 @@ import styles from "./tracking.module.css";
 
 const Tracking = () => {
   const [trackingNumber, setTrackingNumber] = useState("BPS1EP58YI5SKBR");
+  const [stepsData, setStepsData] = useState([
+    "Step 1 Description",
+    "Step 2 Description",
+    "Step 3 Description",
+  ]);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -16,7 +22,7 @@ const Tracking = () => {
       console.log(error);
     }
   };
-  const description = "This is a description.";
+
   return (
     <>
       <div className={styles.container}>
@@ -33,10 +39,14 @@ const Tracking = () => {
         </div>
       </div>
       <div className={styles.stepsContainer}>
-        <Steps direction="vertical" current={1}>
-          <Steps.Step title="Finished" description={description} />
-          <Steps.Step title="In Progress" description={description} />
-          <Steps.Step title="Waiting" description={description} />
+        <Steps direction="vertical" current={1} className={styles.centerSteps}>
+          {stepsData.map((stepDescription, index) => (
+            <Steps.Step
+              key={index}
+              title={`Step ${index + 1}`}
+              description={stepDescription}
+            />
+          ))}
         </Steps>
       </div>
     </>
