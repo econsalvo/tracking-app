@@ -68,15 +68,16 @@ const Tracking = () => {
     <>
       <div className={styles.container}>
         <div className={styles.searchContainer}>
+          <p>Enter your tracking number</p>
           <Input
             placeholder="tracking number"
-            style={{ width: "12rem", height: "2.5rem" }}
+            style={{ width: "24rem", height: "2.5rem", textAlign: "center" }}
             value={trackingNumber}
             onChange={(e) => setTrackingNumber(e.target.value)}
           />
           <Button
             onClick={handleSubmit}
-            style={{ height: "2.5rem" }}
+            style={{ height: "2.5rem", marginTop: "1rem", width: "12rem" }}
             loading={loading}
           >
             Submit
@@ -92,6 +93,7 @@ const Tracking = () => {
               description={step.location || step.city}
               subTitle={formatDateTime(step.createdAt)}
               status={getStatus(step)}
+              className={styles.step}
             />
           ))}
         </Steps>

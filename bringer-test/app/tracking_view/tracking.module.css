@@ -6,30 +6,32 @@
 
 .searchContainer{
     border-radius: 16px;
-    width: 20rem;
+    width: 52rem;
     height: 10rem;
     margin-bottom: 5%;
     margin-top: 5%;
     align-items: center;
     justify-content: center;
-    background: rgb(192, 192, 197);
+    background: rgb(240, 240, 243);
     display: flex;
     justify-content: center;
-    box-shadow: 1px 1px 5px 1px rgba(158, 158, 158, 0.719);
+    box-shadow: 1px 1px 5px 1px rgba(100, 159, 226, 0.719);
+    flex-direction: column;
 }
 
 .stepsContainer{
     margin: 0 auto;
     overflow: hidden;
-    max-width: 700px;
+    max-width: 50rem;
+    width: 100%;
     text-align: center;
     padding-top: 1rem;
     padding-left: 1rem;
     padding-right: 1rem;
     padding-bottom: 1rem;
-    background-color: rgb(192, 192, 197);
+    background-color: rgb(249, 249, 252);
     border-radius: 1rem;
-    box-shadow: 1px 1px 5px 1px rgba(158, 158, 158, 0.719);
+    box-shadow: 1px 1px 5px 1px rgba(100, 159, 226, 0.719);
 }
 
 .centerSteps {
@@ -37,3 +39,11 @@
     flex-direction: column;
     text-align: center;
   }
+
+
+.step:hover{
+    /* background-color: rgba(128, 179, 238, 0.616); */
+    background: linear-gradient(to bottom, rgb(255, 255, 255), rgb(166, 188, 236));
+    color: white;
+    border-radius: 11px;
+}

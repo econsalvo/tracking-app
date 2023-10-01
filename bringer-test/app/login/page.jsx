@@ -1,9 +1,9 @@
 "use client";
 import axios from "axios";
 import styles from "./login.module.css";
-import { CopyOutlined } from "@ant-design/icons";
+import { CopyOutlined, LogoutOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
-import { Input, Form, Button, Collapse } from "antd";
+import { Input, Form, Button, Collapse, message } from "antd";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -27,6 +27,7 @@ const Login = () => {
   const copyToClipboard = () => {
     const textToCopy = token;
     navigator.clipboard.writeText(textToCopy);
+    message.success("Copied to clipboard");
   };
 
   useEffect(() => {
@@ -36,6 +37,11 @@ const Login = () => {
       setToken(token);
     }
   }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setIsLogin(false);
+  };
 
   const items = [
     {
@@ -47,6 +53,10 @@ const Login = () => {
           <Button style={{ margin: "1rem" }} onClick={copyToClipboard}>
             Copy
             <CopyOutlined />
+          </Button>
+          <Button style={{ margin: "1rem" }} onClick={handleLogout}>
+            Logout
+            <LogoutOutlined />
           </Button>
         </div>
       ),
