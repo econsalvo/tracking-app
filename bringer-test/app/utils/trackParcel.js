@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import { message } from "antd";
 export const trackParcel = async (trackingNumber) => {
   try {
     const response = await axios.get(
@@ -17,7 +17,7 @@ export const trackParcel = async (trackingNumber) => {
   } catch (error) {
     if (error.response && error.response.status === 400) {
       // Handle 400 Bad Request Error
-      console.error("Bad Request Error:", error);
+      message.error("Invalid Tracking Number");
       return { success: false, error: "Bad Request Error" };
     } else {
       console.error("An error occurred while making the Axios request:", error);

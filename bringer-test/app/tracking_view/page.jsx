@@ -1,6 +1,6 @@
 "use client";
 
-import { Input, Button, Steps } from "antd";
+import { Input, Button, Steps, message } from "antd";
 import { useState, useEffect } from "react";
 import { trackParcel } from "../utils/trackParcel";
 import styles from "./tracking.module.css";
@@ -8,6 +8,7 @@ import styles from "./tracking.module.css";
 const Tracking = () => {
   const [trackingNumber, setTrackingNumber] = useState("BPS1EP58YI5SKBR");
   const [stepsData, setStepsData] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const getData = async () => {
     try {
@@ -21,8 +22,10 @@ const Tracking = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
+      setLoading(true);
       const trackingInfo = await trackParcel(trackingNumber);
       setStepsData(trackingInfo.parcel_tracking_items);
+      setLoading(false);
     } catch (error) {
       console.error(error);
     }
@@ -71,14 +74,18 @@ const Tracking = () => {
             value={trackingNumber}
             onChange={(e) => setTrackingNumber(e.target.value)}
           />
-          <Button onClick={handleSubmit} style={{ height: "2.5rem" }}>
+          <Button
+            onClick={handleSubmit}
+            style={{ height: "2.5rem" }}
+            loading={loading}
+          >
             Submit
           </Button>
         </div>
       </div>
       <div className={styles.stepsContainer}>
         <Steps direction="vertical" current={1} className={styles.centerSteps}>
-          {stepsData.map((step, index) => (
+          {stepsData?.map((step, index) => (
             <Steps.Step
               key={index}
               title={getTitle(step)}
