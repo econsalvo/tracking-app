@@ -5,7 +5,6 @@
 }
 
 .searchContainer{
-    border: solid 1px;
     border-radius: 16px;
     width: 20rem;
     height: 10rem;
@@ -16,21 +15,21 @@
     background: rgb(192, 192, 197);
     display: flex;
     justify-content: center;
+    box-shadow: 1px 1px 5px 1px rgba(158, 158, 158, 0.719);
 }
 
 .stepsContainer{
     margin: 0 auto;
     overflow: hidden;
     max-width: 700px;
-    margin-top: 24px;
     text-align: center;
-    padding-top: 16px;
-    padding-left: 16px;
-    margin-bottom: 24px;
-    padding-right: 16px;
-    padding-bottom: 16px;
+    padding-top: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 1rem;
     background-color: rgb(192, 192, 197);
-    border-radius: 16px;
+    border-radius: 1rem;
+    box-shadow: 1px 1px 5px 1px rgba(158, 158, 158, 0.719);
 }
 
 .centerSteps {
