@@ -10,14 +10,17 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [isLogin, setIsLogin] = useState(false);
   const [token, setToken] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (values) => {
     try {
+      setIsLoading(true);
       const response = await axios.post("/api/generate_token", values);
-      console.log(response.data);
+
       const jwtToken = response.data.token;
       setToken(jwtToken);
       localStorage.setItem("token", jwtToken);
+      setIsLoading(false);
       setIsLogin(true);
     } catch (error) {
       console.log(error);
@@ -112,9 +115,9 @@ const Login = () => {
             </Form.Item>
             <Form.Item style={{ textAlign: "center" }}>
               <Button
-                type="primary"
                 htmlType="submit"
                 style={{ width: "100%" }}
+                loading={isLoading}
               >
                 Submit
               </Button>
