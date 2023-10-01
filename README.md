@@ -37,4 +37,5 @@ Simple app that allows navigation between two pages. The first page is a login p
 - Utilizes Nextjs app routing. 
 - Ant design components
 - JWT token creation
+- Deployed on vercel
 
