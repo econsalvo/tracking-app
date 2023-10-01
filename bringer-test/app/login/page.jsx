@@ -2,7 +2,7 @@
 import axios from "axios";
 import styles from "./login.module.css";
 import { CopyOutlined } from "@ant-design/icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Input, Form, Button, Collapse } from "antd";
 
 const Login = () => {
@@ -12,14 +12,13 @@ const Login = () => {
   const [token, setToken] = useState("");
 
   const handleSubmit = async (values) => {
-    console.log(values);
-    setIsLogin(true);
     try {
       const response = await axios.post("/api/generate_token", values);
       console.log(response.data);
-      setIsLogin(true);
       const jwtToken = response.data.token;
       setToken(jwtToken);
+      localStorage.setItem("token", jwtToken);
+      setIsLogin(true);
     } catch (error) {
       console.log(error);
     }
@@ -29,6 +28,14 @@ const Login = () => {
     const textToCopy = token;
     navigator.clipboard.writeText(textToCopy);
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsLogin(true);
+      setToken(token);
+    }
+  }, []);
 
   const items = [
     {

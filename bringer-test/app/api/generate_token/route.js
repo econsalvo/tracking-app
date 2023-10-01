@@ -12,13 +12,13 @@ export async function POST(request) {
   const token = sign({ username, password }, secret, { expiresIn: EXPIRE });
 
   // Set the JWT token as an HTTP cookie
-  const serializedCookie = serialize("cookie", token, {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "strict",
-    maxAge: EXPIRE,
-    path: "/",
-  });
+  // const serializedCookie = serialize("cookie", token, {
+  //   httpOnly: true,
+  //   secure: process.env.NODE_ENV === "production",
+  //   sameSite: "strict",
+  //   maxAge: EXPIRE,
+  //   path: "/",
+  // });
 
   const response = {
     message: "success",
@@ -27,6 +27,6 @@ export async function POST(request) {
 
   return new Response(JSON.stringify(response), {
     status: 200,
-    headers: { "Set-Cookie": serializedCookie },
+    // headers: { "Set-Cookie": serializedCookie },
   });
 }
