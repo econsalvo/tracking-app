@@ -2,10 +2,16 @@
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## Setting up local development environment
 
 - Navigate inside the bringer-test folder
 - Install dependecies
+- Inside the bringer folder create and configure `env.local` file with the following variables:
+
+```bash
+JWT_SECRET = "your secret"
+BRINGER_TKN = "bringer_bearer_token"
+```
 
 ```bash
 npm install
