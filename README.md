@@ -34,7 +34,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## For Live Preivew
 
-Open [https://tracking-app-umber.vercel.app/tracking_view](https://tracking-app-umber.vercel.app/tracking_view).
+Open [https://tracking-app-umber.vercel.app](https://tracking-app-umber.vercel.app).
 
 ## About this project
 
