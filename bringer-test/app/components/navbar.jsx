@@ -48,7 +48,7 @@ export const Navbar = () => {
   ];
 
   return (
-    <div>
+    <div style={{ flexWrap: "wrap" }}>
       <Menu
         onClick={onClick}
         selectedKeys={[current]}
